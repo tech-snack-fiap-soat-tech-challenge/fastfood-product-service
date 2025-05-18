@@ -52,14 +52,16 @@ export class ProductEntity extends BaseEntity {
   }
 
   changeData(
-    data: Pick<
-      ProductEntity,
-      | 'name'
-      | 'description'
-      | 'categoryId'
-      | 'price'
-      | 'stockQuantity'
-      | 'imageUrl'
+    data: Partial<
+      Pick<
+        ProductEntity,
+        | 'name'
+        | 'description'
+        | 'categoryId'
+        | 'price'
+        | 'stockQuantity'
+        | 'imageUrl'
+      >
     >,
   ): void {
     const { name, description, price, stockQuantity, categoryId } = data;
@@ -67,10 +69,12 @@ export class ProductEntity extends BaseEntity {
     this.description = description ?? this.description;
     this.price = price ?? this.price;
     this.stockQuantity = stockQuantity ?? this.stockQuantity;
-    this.categoryId = categoryId ?? this.categoryId;
     this.imageUrl = data.imageUrl ?? this.imageUrl;
     this.updatedAt = new Date();
-    this.category = undefined;
+    if (categoryId) {
+      this.categoryId = categoryId;
+      this.category = undefined;
+    }
   }
 
   disableProduct(): void {

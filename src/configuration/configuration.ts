@@ -19,15 +19,15 @@ export interface AppConfig {
 export const configuration = (): AppConfig => ({
   app: {
     env: process.env.NODE_ENV || 'development',
-    port: parseInt(process.env.PORT, 10) || 3000,
+    port: Number(process.env.PORT) || 3000,
     logLevel: process.env.LOG_LEVEL || 'debug',
   },
   database: {
-    host: process.env.DB_HOST || 'localhost',
-    port: parseInt(process.env.DB_PORT, 10) || 5432,
-    username: process.env.DB_USERNAME || 'postgres',
-    password: process.env.DB_PASSWORD || 'postgres',
-    database: process.env.DB_NAME || 'fastfood',
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     useSSL: process.env.DB_SSL === 'true',
   },
 });

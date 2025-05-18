@@ -60,6 +60,7 @@
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-prettier": "^5.0.0",
     "jest": "^29.5.0",
+    "jest-mock-extended": "^4.0.0-beta1",
     "mockdate": "^3.0.5",
     "prettier": "^3.0.0",
     "sinon": "^19.0.2",
@@ -87,13 +88,17 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "src/**/*.ts",
+      "!src/**/__test__/**/*.ts",
+      "!src/*.ts",
+      "!src/**/*.module.ts",
+      "!src/common/**/*.ts",
+      "!src/configuration/**/*.ts"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
-      "@app/(.*)": "<rootDir>/src/$1",
-      "@order/(.*)": "<rootDir>/src/order/$1",
+      "@app/(.*)": "<rootDir>/src/$1",      
       "@common/(.*)": "<rootDir>/src/common/$1"
     }
   }
