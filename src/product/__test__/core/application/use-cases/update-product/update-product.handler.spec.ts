@@ -21,17 +21,17 @@ describe('UpdateProductHandler', () => {
         // Arrange
         const mockProduct = new ProductEntityBuilder().build();
         const command = new UpdateProductCommand(mockProduct.id, {
-            name: 'Updated Name',
+          name: 'Updated Name',
         });
-        
+
         jest.spyOn(productRepository, 'getById').mockResolvedValue(mockProduct);
         jest.spyOn(mockProduct, 'changeData');
         jest.spyOn(productRepository, 'update').mockResolvedValue(mockProduct);
-        
+
         // Act
         const result = await handler.execute(command);
-        
-        // Assert        
+
+        // Assert
         expect(productRepository.getById).toHaveBeenCalledWith(mockProduct.id);
         expect(mockProduct.changeData).toHaveBeenCalledWith({
           name: 'Updated Name',

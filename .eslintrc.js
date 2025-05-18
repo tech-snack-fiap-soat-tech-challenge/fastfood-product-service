@@ -21,6 +21,7 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js', 'db/**'],
   rules: {
+    '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
