@@ -47,8 +47,6 @@ jobs:
             -Dsonar.scanner.metadataFilePath=$SCANNER_META_PATH \
             -Dsonar.coverage.exclusions=**/common/**,**/__test__/**,**/main.ts,**/configuration.ts,**/*.module.ts,**/*.enum.ts,**/scripts/**,**/migrations
 
-
-
       - name: Validar Quality Gate do SonarCloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -136,12 +134,12 @@ jobs:
 
       - name: Fazer login no Amazon ECR
         run: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_REPOSITORY }}
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_REPOSITORY }}/fastfood-product-service
 
       - name: Construir e enviar imagem Docker para o ECR
         run: |
-          docker build -t ${{ secrets.AWS_ECR_REPOSITORY }}:latest .
-          docker push ${{ secrets.AWS_ECR_REPOSITORY }}:latest
+          docker build -t ${{ secrets.AWS_ECR_REPOSITORY }}/fastfood-product-service:latest .
+          docker push ${{ secrets.AWS_ECR_REPOSITORY }}/fastfood-product-service:latest
 
       - name: Configurar kubectl e acessar cluster EKS
         run: |
@@ -156,7 +154,7 @@ jobs:
         run: |
           helm upgrade --install fastfood-product-service ./deployment \
             --namespace default \
-            --set image.repository=${{ secrets.AWS_ECR_REPOSITORY }} \
+            --set image.repository=${{ secrets.AWS_ECR_REPOSITORY }}/fastfood-product-service \
             --set image.tag=latest
 
       - name: Verificar status dos pods
