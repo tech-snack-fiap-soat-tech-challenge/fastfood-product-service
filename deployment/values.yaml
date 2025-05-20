@@ -1,7 +1,7 @@
 
 replicaCount: 2
 image:
-  repository: 467897245441.dkr.ecr.us-east-1.amazonaws.com/fiap-product-service
+  repository: 467897245441.dkr.ecr.us-east-1.amazonaws.com/fastfood-product-service
   pullPolicy: IfNotPresent
   tag: "latest"
 
