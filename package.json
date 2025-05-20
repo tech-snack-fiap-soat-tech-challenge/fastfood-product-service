@@ -87,6 +87,7 @@
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
+    "collectCoverage":true,
     "collectCoverageFrom": [
       "src/**/*.ts",
       "!src/**/__test__/**/*.ts",
@@ -95,7 +96,7 @@
       "!src/common/**/*.ts",
       "!src/configuration/**/*.ts"
     ],
-    "coverageDirectory": "../coverage",
+    "coverageDirectory": "coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
       "@app/(.*)": "<rootDir>/src/$1",      
