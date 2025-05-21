@@ -16,6 +16,8 @@ WORKDIR /usr/src/app
 
 COPY --from=build /usr/src/app/package*.json ./
 COPY --from=build /usr/src/app/dist ./dist
+COPY --from=builder /usr/src/app/db ./db
+COPY --from=builder /usr/src/app/.db-migraterc ./
 
 # Set NODE_ENV to production
 ENV NODE_ENV=production
